@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        body{
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <header></header>
+    <nav></nav>
+    <main>
+        <section>
+            <article>
+
+            </article>
+        </section>
+    </main>
+    <footer></footer>
+</body>
+<script src="../../../제이쿼리/jquery-3.6.0.min.js"></script>
+<script>
+    const timerID = window.setInterval("moveimage()", 1000);
+    const bdy = document.querySelector('body');
+    Math.floor(Math.random() * 100);
+
+    for(let i=0 ; i<30 ; i++){
+        let image = document.createElement('div');
+        image.classList.add('snow');
+        image.innerHTML = ` 
+            <img src="snow.jpg">
+        `;
+        image.style.position = 'absolute';
+        image.style.left = Math.floor(Math.random() * 1200);
+        image.style.top = Math.floor(Math.random() * 800);
+        
+        bdy.appendChild(image);
+    }
+    window.onload = function(){
+        bdy.style.backgroundImage = "url(./backgroundimage.jpg)";
+    }
+    function moveimage(){
+
+    }
+</script>
+</html>

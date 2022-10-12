@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>p425</title>
+</head>
+<body>
+    <header>
+        <h1>마우스 클릭 연습</h1><hr>
+    </header>
+    <nav></nav>
+    <main>
+        <section>
+            <article>
+                <table frame="voide" border="1px">
+                    <thead></thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot></tfoot>
+                </table>
+            </article>
+        </section>
+        <section>
+            <article>
+                <label>바나나<input type="radio" name="과일" value="banana.jpg"></label>
+                <label>망고<input type="radio" name="과일" value="backgroundimage.jpg"></label>
+                <label>사과<input type="radio" name="과일" value="backgroundimage.jpg"></label>
+                <img src="" alt="">
+            </article>
+        </section>
+    </main>
+    <footer></footer>
+</body>
+<script>
+    const body = document.querySelector('body');
+    const radio = document.getElementsByName('과일');
+    
+    for(let i=0 ; i<radio.length ; i++){
+        radio[i].addEventListener('click', drawimage)
+    }
+
+    function drawimage(e){
+        let img = document.querySelector('article > img');
+        img.src = e.currentTarget.value;
+    }
+
+    window.onfocus = function(){
+        body.style.backgroundColor = 'white';
+    }
+    window.onblur = function(){
+        body.style.backgroundColor = 'gray';
+    }
+    window.onload = function(){
+        let tby = document.querySelector("tbody");
+        let make_table = ``;
+
+        for(let i=0 ; i<10 ; i++){
+            make_table += `<tr>`;
+            for(let j=0 ; j<10 ; j++){
+                make_table += `<td><img src=""></td>`;
+            }
+            make_table += `</tr>`;
+        }
+        tby.innerHTML = make_table;
+        let image_list = document.querySelectorAll("img");
+        image_list[makerandom()].src = `./backgroundimage.jpg`;
+
+        image_list.forEach(img => {
+            img.addEventListener('click', moveimage);
+        });
+    }
+
+    function moveimage(e){
+        console.log(e.currentTarget.src);
+        if(e.currentTarget.src === "http://127.0.0.1:5500/%EC%B1%85/CHAPTER9/p425/backgroundimage.jpg"){
+            e.currentTarget.src="";
+            let image_list = document.querySelectorAll("img");
+            image_list[makerandom()].src = `./backgroundimage.jpg`;
+        }
+    }
+
+    function makerandom(){
+        return Math.floor(Math.random() * 100);
+    }
+</script>
+</html>

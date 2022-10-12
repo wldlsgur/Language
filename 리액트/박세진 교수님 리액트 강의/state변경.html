@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            time: new Date(),
+          };
+        }
+
+        componetDidMount() {
+          this.timerId = setInterval(() => {
+            this.setState({
+              time: new Date(),
+            });
+          }, 1000);
+        }
+
+        componetWillUnmount() {
+          clearInterval(this.timerId);
+        }
+
+        render() {
+          return (
+            <ul>
+              <Item value={this.state.time.toLocaleString} />
+              <Item value={this.state.time.toLocaleString} />
+              <Item value={this.state.time.toLocaleString} />
+            </ul>
+          );
+        }
+      }
+
+      class Item extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            value: props.value,
+          };
+        }
+        componetDidUpdate(prevProps) {
+          if (prevProps.value !== this.props.value) {
+            return;
+          }
+          this.setState({
+            value: this.props.value,
+          });
+        }
+        render() {
+          return <li>{this.state.value}</li>;
+        }
+      }
+
+      const container = document.querySelector("#root");
+      ReactDOM.render(<App />, container);
+    </script>
+  </body>
+</html>
