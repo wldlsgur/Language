@@ -1,0 +1,40 @@
+Node.Js
+
+npm install pm2
+npm install express
+npm install ...등
+
+npm install --save helmet//보안 솔류션
+사용할때는 리콰이어 하고 app.use(helmet());
+cookie
+https
+express 버전 최신화
+sudo npm insatll nsp - g//보안체크 모듈
+nsp check//nsp가 모듈 보안 체크
+
+//express 코딩시 기본 셋팅 (강의 다시보기)
+npm insatll express-generator -g//글로벌로 설치
+express -h// 사용방법 예제(generator)
+express myapp 하면 myapp디렉토리가 생성되고 안에 여러파일이 생성
+cd myapp - > npm istall //하면 필요한 파일은 패키지.json에 다운로드된다.
+npm start//시작
+
+response.end(fs.readFileSync(__dirname + url));
+//디렉토리 경로 + url 주소를 내파일에서 읽은다음 해당 html파일을 사용자에게 전송해준다
+ 
+중복을 제거하면 좋은 프로그램이 완성된다.
+
+pm2 start main.js : 항상 안꺼지게 노드 켜두기
+pm2 stop main : 끄기
+pm2 monit : 현재 pm2에 의해 실행된 프로그램 목록 (q로 나간다)
+pm2 list : 현재 실행중인 프로세스목록
+pm2 start main.js --watch : 변경사항 껏다안켜도 바로 적용
+pm2 log : 오류를 확인할수 있다 , 변경내용도 바로 볼수가 있따
+pm2 kill : pm2로 연결된 것을 모두 종료
+pm2 start main.js --watch --no-daemon  : pm2 log랑 동시에 하는것 변경이나 수정시 프로그램이 꺼졋다 켜짐 
+pm2 start amin.js --watch --ignore-watch-"data/*" --no-deamon : 데이터 파일에 모든 것은 껐다 켜지지 않는다
+deamon은 백그라운드에서 돌아가는 프로그램
+
+javascript는 함수가 값으로 담을 수가 있다.
+
+리팩토링 : 코드를 효율적으로 개선하는 행위 ex) 모듈을 사용하거나 반복을 줄이는 함수로 만들거나 객체로 변환
