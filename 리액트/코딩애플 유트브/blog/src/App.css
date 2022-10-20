@@ -19,9 +19,11 @@ div {
   padding-left: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.modal {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #eee;
+  text-align: left;
 }
 
 @media (prefers-reduced-motion: no-preference) {
