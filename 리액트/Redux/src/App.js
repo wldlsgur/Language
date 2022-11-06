@@ -1,15 +1,16 @@
 import "./App.css";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { legacy_createStore as createStore } from "redux";
 import rootReducer from "./Redux/rootReducer";
-import HeaderComponent from "./headerComponent";
-
+import Headercomponent from "./headerComponent";
 const store = createStore(rootReducer);
 
 function App() {
-  <Provider store={store}>
-    <HeaderComponent></HeaderComponent>
-  </Provider>;
+  return (
+    <Provider store={store}>
+      <Headercomponent></Headercomponent>
+    </Provider>
+  );
 }
 
 export default App;

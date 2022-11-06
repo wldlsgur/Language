@@ -1,18 +1,14 @@
-const initState = [];
+const initState = { number: 0 };
 
 export default function friend(state = initState, action) {
-  let copy = [...state];
+  let copy = { ...state };
+  console.log("스위치문 : ", action);
 
   switch (action.type) {
-    case ADD_DATA: {
-      let index = state.findIndex((state) => {
-        return state.id === action.payload.id;
-      });
-
-      if (index >= 0) {
-        alert("이미 있음");
-        return copy;
-      }
+    case "Friend/ADD_DATA": {
+      copy.number++;
     }
   }
+
+  return copy;
 }
