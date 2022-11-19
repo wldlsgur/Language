@@ -2,7 +2,7 @@ const initState = { number: 0 };
 
 export default function friend(state = initState, action) {
   let copy = { ...state };
-  console.log("스위치문 : ", action);
+  console.log(state);
 
   switch (action.type) {
     case "Friend/ADD_DATA": {
