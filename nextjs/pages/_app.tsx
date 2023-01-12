@@ -1,15 +1,11 @@
-import "../styles/globals.css";
+import GlobalStyle from "../styles/globals";
 import type { AppProps } from "next/app";
-import Footer from "../src/components/Footer";
-import Top from "../src/components/Top";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const test: boolean = true;
   return (
     <>
-      {test ? <Top></Top> : null}
+      <GlobalStyle></GlobalStyle>
       <Component {...pageProps} />
-      <Footer></Footer>
     </>
   );
 }
