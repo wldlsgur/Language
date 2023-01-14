@@ -1,6 +1,6 @@
-import Axios from "axios";
+import axios from "axios";
 
-const API = Axios.create({
+const API = axios.create({
   baseURL: "http://makeup-api.herokuapp.com/",
   headers: {
     "Content-Type": "apllication/json",
