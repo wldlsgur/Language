@@ -6,11 +6,14 @@ import Head from "next/head";
 import Top from "../src/components/index/Top";
 import Footer from "../src/components/index/Footer";
 import Gnv from "../src/components/index/Gnv";
-interface HomeProps {
-  data?: object;
-}
 
-export default function Home({ data }: HomeProps): ReactElement {
+export default function Home(): ReactElement {
+  const { isLoading, isError, data, error } = useQuery("testData", getTestData);
+
+  if (isLoading) return <span>Loading...</span>;
+  if (isError) return <span>Error</span>;
+  console.log(data);
+
   return (
     <HomeWrapDiv>
       <Head>
@@ -25,17 +28,12 @@ export default function Home({ data }: HomeProps): ReactElement {
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(
-    "dailyword",
-    async () => await fetchDailyword()
-  );
+  await queryClient.prefetchQuery("testData", getTestData);
 
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-
-  const data = await getTestData();
-  if (data) return { props: { data } };
+  if (queryClient)
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
 }
