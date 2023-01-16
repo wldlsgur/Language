@@ -1,7 +1,6 @@
-import { ReactElement } from "react";
 import { GnvDiv, GnvItems, GnvItem } from "./style";
 
-export default function Gnv(): ReactElement {
+export default function Gnv(): JSX.Element {
   return (
     <GnvDiv>
       <GnvItems>

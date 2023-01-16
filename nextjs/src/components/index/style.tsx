@@ -37,5 +37,46 @@ export const GnvItem = styled.li`
     background: gray;
   }
 `;
-
 // Global Nav Components
+export const ItemsTitleDiv = styled.div`
+  margin-top: 1.5em;
+`;
+export const Title = styled.h2`
+  padding: 1.5em 0 0.5em 0;
+`;
+export const ItemsDiv = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px 100px;
+  padding: 2em 2.5em 2em 2.5em;
+  // place-items: center center;
+  // place-content: center center;
+  border-top: 1px solid darkgray;
+  & * {
+    margin-top: 1.5em;
+  }
+`;
+export const ItemDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export const ItemImage = styled.img`
+  width: 60%;
+`;
+export const ItemName = styled.strong`
+  font-size: 1.5rem;
+  text-align: center;
+  display: -webkit-box;
+  -webkt-line-clamp: 2;
+  -webkit-box-rient: vertical;
+  overflow: hidden;
+`;
+export const ItemBrand = styled.p`
+  color: gray;
+`;
+export const ItemPrice = styled.strong`
+  color: green;
+  font-size: 1.5rem;
+`;
+// Items Components

@@ -1,4 +1,3 @@
-import { ReactElement, useEffect, useState } from "react";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { HomeWrapDiv } from "../src/components/index/style";
 import { getTestData } from "../src/services/axiosManager";
@@ -6,14 +5,11 @@ import Head from "next/head";
 import Top from "../src/components/index/Top";
 import Footer from "../src/components/index/Footer";
 import Gnv from "../src/components/index/Gnv";
+import Items from "../src/components/index/Items";
 
-export default function Home(): ReactElement {
-  const { isLoading, isError, data, error } = useQuery("testData", getTestData);
+interface props {}
 
-  if (isLoading) return <span>Loading...</span>;
-  if (isError) return <span>Error</span>;
-  console.log(data);
-
+export default function Home(): JSX.Element {
   return (
     <HomeWrapDiv>
       <Head>
@@ -21,6 +17,7 @@ export default function Home(): ReactElement {
       </Head>
       <Top></Top>
       <Gnv></Gnv>
+      <Items></Items>
       <Footer></Footer>
     </HomeWrapDiv>
   );
