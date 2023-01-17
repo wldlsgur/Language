@@ -4,31 +4,30 @@ import Footer from "../../src/components/index/Footer";
 import Gnv from "../../src/components/index/Gnv";
 import Top from "../../src/components/index/Top";
 import { getTestDetailData } from "../../src/services/axiosManager";
+import { isError, useQuery } from "react-query";
+import { useEffect } from "react";
+import Item from "../../src/components/view/item";
 
 interface props {}
 
 export default function Post(): JSX.Element {
   const router = useRouter();
   const { id } = router.query;
+  const { isLoading, isError, error, data } = useQuery<any[], Error>(
+    "getTestDetailData",
+    () => getTestDetailData(id),
+    {
+      enabled: !!id, //id가 있을때만 실행
+    }
+  );
+  if (isLoading || !data) return <div>Loding...</div>;
+  if (isError) return <div>err...</div>;
   return (
     <HomeWrapDiv>
       <Top></Top>
       <Gnv></Gnv>
-      <div>Post: {id}</div>
+      <Item data={data}></Item>
       <Footer></Footer>
     </HomeWrapDiv>
   );
-}
-
-export async function getServerSideProps() {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery("testData", getTestData);
-
-  if (queryClient)
-    return {
-      props: {
-        dehydratedState: dehydrate(queryClient),
-      },
-    };
 }

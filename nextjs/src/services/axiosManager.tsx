@@ -20,7 +20,7 @@ export const getTestData = async (): Promise<any | null> => {
     return res.data;
   }
 };
-export const getTestDetailData = async (id: string): Promise<any | null> => {
+export const getTestDetailData = async (id: any): Promise<any | null> => {
   let res = await API.get(`api/v1/products/${id}.json`);
   if (res?.data) {
     return res.data;
