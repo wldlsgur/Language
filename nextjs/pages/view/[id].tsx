@@ -4,30 +4,57 @@ import Footer from "../../src/components/index/Footer";
 import Gnv from "../../src/components/index/Gnv";
 import Top from "../../src/components/index/Top";
 import { getTestDetailData } from "../../src/services/axiosManager";
-import { isError, useQuery } from "react-query";
-import { useEffect } from "react";
+import { dehydrate, QueryClient, useQuery } from "react-query";
 import Item from "../../src/components/view/item";
-
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import { GetServerSideProps } from "next";
+import Loding from "../../src/components/common/Loding";
 interface props {}
 
-export default function Post(): JSX.Element {
-  const router = useRouter();
-  const { id } = router.query;
-  const { isLoading, isError, error, data } = useQuery<any[], Error>(
-    "getTestDetailData",
-    () => getTestDetailData(id),
-    {
-      enabled: !!id, //id가 있을때만 실행
-    }
+export default function Post({ id }: any): JSX.Element {
+  const { data, error } = useQuery("testDetailData", () =>
+    getTestDetailData(id)
   );
-  if (isLoading || !data) return <div>Loding...</div>;
-  if (isError) return <div>err...</div>;
+
+  // const { error, data } = useQuery<any[], Error>(
+  //   "getTestDetailData",
+  //   () => getTestDetailData(id),
+  //   {
+  //     enabled: !!id,
+  //   }
+  // );
+
   return (
     <HomeWrapDiv>
       <Top></Top>
       <Gnv></Gnv>
-      <Item data={data}></Item>
+      <Suspense fallback={<Loding></Loding>}>
+        <ErrorBoundary fallback={<div>err...</div>}>
+          <Item data={data}></Item>
+        </ErrorBoundary>
+      </Suspense>
       <Footer></Footer>
     </HomeWrapDiv>
   );
+}
+
+export async function getServerSideProps(context: { query: { id: any } }) {
+  const id = context.query.id;
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery("testDetailData", () =>
+    getTestDetailData(id)
+  );
+
+  if (queryClient)
+    return {
+      props: {
+        id: id,
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
+}
+interface IHOCProp {
+  id?: string;
 }

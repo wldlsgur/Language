@@ -80,3 +80,10 @@ export const ItemPrice = styled.strong`
   font-size: 1.5rem;
 `;
 // Items Components
+export const FooterDiv = styled.div`
+  text-align: center;
+  padding: 2em 0 2em 0;
+  font-size: 1em;
+  border-top: 1px solid darkgray;
+`;
+// Footer Components

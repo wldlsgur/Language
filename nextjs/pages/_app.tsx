@@ -4,7 +4,18 @@ import { QueryClientProvider, QueryClient, Hydrate } from "react-query";
 import React from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [queryClient] = React.useState(() => new QueryClient());
+  const [queryClient] = React.useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            retry: 0,
+            suspense: true,
+          },
+        },
+      })
+  );
+
   return (
     <>
       <QueryClientProvider client={queryClient}>

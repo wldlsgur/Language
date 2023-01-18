@@ -27,7 +27,7 @@ export const InfoCategory = styled.span`
   font-size 2rem;
 `;
 export const InfoBuyBtn = styled.button`
-  width: 15%;
+  width: 20%;
   height: 15%;
   font-size: 1rem;
   background: orange;
@@ -40,4 +40,14 @@ export const InfoBuyBtn = styled.button`
     cursor: Pointer;
     transform: scale(1.2);
   }
+`;
+export const DescriptionDiv = styled.div`
+  padding: 2em 0 3em 0;
+`;
+export const DescriptionTitle = styled.h3`
+  margin-bottom: 2em;
+  font-size: 2rem;
+`;
+export const DescriptionContent = styled.p`
+  font-size: 1.5rem;
 `;

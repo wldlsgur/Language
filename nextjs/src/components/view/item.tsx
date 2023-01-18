@@ -7,6 +7,9 @@ import {
   ItemDiv,
   ViewImage,
   ViewWrap,
+  DescriptionDiv,
+  DescriptionTitle,
+  DescriptionContent,
 } from "./style";
 
 export default function Item({ data }: any): JSX.Element {
@@ -35,6 +38,10 @@ export default function Item({ data }: any): JSX.Element {
           <InfoBuyBtn>구매하기</InfoBuyBtn>
         </InfoDiv>
       </ItemDiv>
+      <DescriptionDiv>
+        <DescriptionTitle>Description</DescriptionTitle>
+        <DescriptionContent>{description}</DescriptionContent>
+      </DescriptionDiv>
     </ViewWrap>
   );
 }
