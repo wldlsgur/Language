@@ -13,7 +13,8 @@ export default function Home(): JSX.Element {
   return (
     <HomeWrapDiv>
       <Head>
-        <title>Next Js!!</title>
+        <title>HOME || 지인혁</title>
+        <meta name="description" content="지인혁 홈 입니다."></meta>
       </Head>
       <Top></Top>
       <Gnv></Gnv>
@@ -22,10 +23,10 @@ export default function Home(): JSX.Element {
     </HomeWrapDiv>
   );
 }
-export async function getServerSideProps() {
+export function getServerSideProps() {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery("testData", getTestData);
+  queryClient.prefetchQuery("testData", getTestData);
 
   if (queryClient)
     return {

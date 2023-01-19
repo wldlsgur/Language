@@ -10,6 +10,7 @@ import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { GetServerSideProps } from "next";
 import Loding from "../../src/components/common/Loding";
+import Head from "next/head";
 interface props {}
 
 export default function Post({ id }: any): JSX.Element {
@@ -27,11 +28,15 @@ export default function Post({ id }: any): JSX.Element {
 
   return (
     <HomeWrapDiv>
+      <Head>
+        <title>{data.name}</title>
+        <meta name="description" content={data.description}></meta>
+      </Head>
       <Top></Top>
       <Gnv></Gnv>
       <Suspense fallback={<Loding></Loding>}>
         <ErrorBoundary fallback={<div>err...</div>}>
-          <Item data={data}></Item>
+          {data ? <Item data={data}></Item> : <Loding></Loding>}
         </ErrorBoundary>
       </Suspense>
       <Footer></Footer>
@@ -39,13 +44,11 @@ export default function Post({ id }: any): JSX.Element {
   );
 }
 
-export async function getServerSideProps(context: { query: { id: any } }) {
+export function getServerSideProps(context: { query: { id: any } }) {
   const id = context.query.id;
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery("testDetailData", () =>
-    getTestDetailData(id)
-  );
+  queryClient.prefetchQuery("testDetailData", () => getTestDetailData(id));
 
   if (queryClient)
     return {
@@ -54,7 +57,4 @@ export async function getServerSideProps(context: { query: { id: any } }) {
         dehydratedState: dehydrate(queryClient),
       },
     };
-}
-interface IHOCProp {
-  id?: string;
 }
