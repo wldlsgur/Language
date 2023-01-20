@@ -18,14 +18,6 @@ export default function Post({ id }: any): JSX.Element {
     getTestDetailData(id)
   );
 
-  // const { error, data } = useQuery<any[], Error>(
-  //   "getTestDetailData",
-  //   () => getTestDetailData(id),
-  //   {
-  //     enabled: !!id,
-  //   }
-  // );
-
   return (
     <HomeWrapDiv>
       <Head>

@@ -15,7 +15,9 @@ import API from "../api/axios";
 // };
 
 export const getTestData = async (): Promise<any | null> => {
-  let res = await API.get("api/v1/products.json?brand=maybelline");
+  let res = await API.get(
+    `api/v1/products.json?brand=${process.env.NEXT_PUBLIC_BRAND}`
+  );
   if (res?.data) {
     return res.data;
   }

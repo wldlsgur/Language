@@ -14,15 +14,15 @@ export default function Items(): JSX.Element {
   return (
     <ItemsTitleDiv>
       <Title>베스트 상품</Title>
-      <Suspense fallback={<Loding></Loding>}>
-        <ErrorBoundary fallback={<div>err...</div>}>
+      <ErrorBoundary fallback={<div>err...</div>}>
+        <Suspense fallback={<Loding></Loding>}>
           <ItemsDiv>
             {data.map((value: any): JSX.Element => {
               return <Item key={value.id} data={value}></Item>;
             })}
           </ItemsDiv>
-        </ErrorBoundary>
-      </Suspense>
+        </Suspense>
+      </ErrorBoundary>
     </ItemsTitleDiv>
   );
 }

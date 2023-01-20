@@ -9,7 +9,9 @@ import Items from "../src/components/index/Items";
 
 interface props {}
 
-export default function Home(): JSX.Element {
+export default function Home({ name }: any): JSX.Element {
+  console.log(name);
+
   return (
     <HomeWrapDiv>
       <Head>
@@ -23,15 +25,15 @@ export default function Home(): JSX.Element {
     </HomeWrapDiv>
   );
 }
-export function getServerSideProps() {
+export function getStaticProps() {
   const queryClient = new QueryClient();
 
   queryClient.prefetchQuery("testData", getTestData);
-
   if (queryClient)
     return {
       props: {
         dehydratedState: dehydrate(queryClient),
+        name: process.env.name,
       },
     };
 }
